@@ -26,7 +26,8 @@ def ExportMigrations():
     This is meant to be called during app startup, ideally by
     django_prometheus.apps.AppConfig.
     """
-
+    # we forked this to exactly not have this
+    pass 
     # Import MigrationExecutor lazily. MigrationExecutor checks at
     # import time that the apps are ready, and they are not when
     # django_prometheus is imported. ExportMigrations() should be
