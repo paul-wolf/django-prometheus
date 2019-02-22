@@ -9,11 +9,11 @@ class MemcachedCache(memcached.MemcachedCache):
     def get(self, key, default=None, version=None):
         django_cache_get_total.labels(backend='memcached').inc()
         cached = super(MemcachedCache, self).get(
-            key, default=None, version=None)
+            key, default=None, version=version)
         if cached is not None:
             django_cache_hits_total.labels(
                 backend='memcached').inc()
         else:
             django_cache_misses_total.labels(
                 backend='memcached').inc()
-        return cached
+        return cached or default
